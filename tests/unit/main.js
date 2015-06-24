@@ -330,6 +330,7 @@ test('should not update reference as a plain object', function(assert){
 
 /* jshint ignore:start */
 
+0. loop through all the files with grunt.concat.option.process function
 1. replace newlines with a unique value and store that value (  something like /*NEWLINE*/ )
 2. search by this {{#runner}}(.*){{\/runner}}/g
 3. replace matches with the content resulted from steps 3.0 to 3.4
