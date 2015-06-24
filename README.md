@@ -1,2 +1,2 @@
 # AMD
-Customized version of AMD
+Personalized version of an AMD implementation

@@ -1,0 +1,20 @@
+{
+    "framework": "qunit",
+    "before_tests": "mkdir -p ephemeral",
+    "livereload": true,
+    "src_files": [
+        "lib/main.js",
+        "tests/unit/main.js"
+    ],
+    "serve_files": [
+        "tests/build/mocha/browser/expect.js",
+        "lib/main.js",
+        "ephemeral/tests/compiled_runners/**/*.js"
+    ],
+    "launch_in_ci": [
+        "PhantomJS"
+    ],
+    "launch_in_dev": [
+        "PhantomJS"
+    ]
+}
