@@ -329,6 +329,17 @@ test('should not update reference as a plain object', function(assert){
 });
 
 /* jshint ignore:start */
+
+1. replace newlines with a unique value and store that value (  something like /*NEWLINE*/ )
+2. search by this {{#runner}}(.*){{\/runner}}/g
+3. replace matches with the content resulted from steps 3.0 to 3.4
+3.0 split by {{tests}}
+3.1 json parse the data from tests section
+3.2 loop through the runner template with all the value from tests section
+3.3 search for {{variables}} with this /{{([^}]*)}}/g in runner template
+3.4 replace the variables with the values from tests section
+4. replace that unique value with newlines
+
 {{#runner}}
 
     test('should not update reference as a {{type}}', function(assert){
