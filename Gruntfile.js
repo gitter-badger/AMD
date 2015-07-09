@@ -30,6 +30,6 @@ module.exports = function(grunt) {
   // Default task(s).
   grunt.registerTask('build:tests:qunit', ['concat:qunit']);
   grunt.registerTask('build:prod', ['uglify']);
-  grunt.registerTask('default', ['babel']);
+  grunt.registerTask('default', ['build:prod']);
 
 };
