@@ -1,0 +1,24 @@
+{
+  "name": "nucleo-amd",
+  "version": "0.0.1",
+  "homepage": "https://github.com/dobre-robert-marius/AMD",
+  "authors": [
+    "robert <dobre_robert_marius@yahoo.com>"
+  ],
+  "description": "custom AMD implementation",
+  "main": "nucleo-amd.min.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "nucleo-amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

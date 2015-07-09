@@ -1,8 +1,8 @@
 {
-  "name": "AMD-replik",
-  "version": "1.0.0",
+  "name": "nucleo-AMD",
+  "version": "0.0.1",
   "description": "Custom AMD implementation",
-  "main": "amd.min.js",
+  "main": "nucleo-amd.min.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/dobre-robert-marius/AMD.git"

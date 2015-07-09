@@ -13,11 +13,11 @@ module.exports = function(grunt) {
         options: {
             mangle:     true,
             compress:   true,
-            banner:     '/* AMD v<%= pkg.version %>  */'
+            banner:     '/* <%= pkg.name %> v<%= pkg.version %>  */'
         },
         prod:    {
             files: {
-                'amd.min.js': ['lib/main.js']
+                'nucleo-amd.min.js': ['lib/main.js']
             }
         }
     }
