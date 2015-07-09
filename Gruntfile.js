@@ -27,7 +27,7 @@ module.exports = function(grunt) {
     },
     bump: {
       options: {
-        files: ['package.json', 'bower.json'],
+        files: ['bower.json'],
         updateConfigs: ['pkg'],
         commit: true,
         commitMessage: 'Release v%VERSION%',
@@ -45,11 +45,14 @@ module.exports = function(grunt) {
     }
 
   });
-
+//HACK to trick shitty npm publish
+// rename .git directory so that npm version will not create tags
+// after tha rename it back
   grunt.registerTask('build:tests:qunit', ['concat:qunit']);
   grunt.registerTask('build:prod', ['uglify']);
 
   grunt.registerTask('deploy:commit', ['uglify', 'bump-commit']);
+  grunt.registerTask('deploy:tests', ['bump-only:patch', 'uglify']);
   grunt.registerTask('deploy:patch', ['bump-only:patch', 'deploy:commit']);
   grunt.registerTask('deploy:minor', ['bump-only:minor', 'deploy:commit']);
   grunt.registerTask('deploy:major', ['bump-only:major', 'deploy:commit']);
