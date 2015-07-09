@@ -1,8 +1,8 @@
 // WIP:
 // - instance of an custom object
 // - closures
-// - tests for not update references in dependencies
-// - dots and slashes in name - test relative paths
+// - dots and slashes in name - test relative paths -> SHOULD NOT BE ACCEPTED - or make a config object where you can choose if you want relative paths or not
+// - Could not find module
 
 var config = {
   afterEach: function() {
@@ -130,9 +130,9 @@ test('should export submodules', function(assert){
 
 
 
-QUnit.module('exports different type of values', config);
+QUnit.module('exports different type of values: should export', config);
 
-test('should export string', function(assert){
+test('string', function(assert){
 
     AMD.define('different/export/string', ['exports'], function(exports){
 
@@ -149,7 +149,7 @@ test('should export string', function(assert){
 
 });
 
-test('should export number', function(assert){
+test('number', function(assert){
 
     AMD.define('different/export/number', ['exports'], function(exports){
 
@@ -166,7 +166,7 @@ test('should export number', function(assert){
 
 });
 
-test('should export object', function(assert){
+test('object', function(assert){
 
     AMD.define('different/export/object', ['exports'], function(exports){
 
@@ -183,7 +183,7 @@ test('should export object', function(assert){
 
 });
 
-test('should export array', function(assert){
+test('array', function(assert){
 
     AMD.define('different/export/array', ['exports'], function(exports){
 
@@ -200,7 +200,7 @@ test('should export array', function(assert){
 
 });
 
-test('should export date', function(assert){
+test('date', function(assert){
 
     AMD.define('different/export/date', ['exports'], function(exports){
 
@@ -217,7 +217,7 @@ test('should export date', function(assert){
 
 });
 
-test('should export regexp', function(assert){
+test('regexp', function(assert){
 
     AMD.define('different/export/regexp', ['exports'], function(exports){
 
@@ -234,7 +234,7 @@ test('should export regexp', function(assert){
 
 });
 
-test('should export undefined', function(assert){
+test('undefined', function(assert){
 
     AMD.define('different/export/undefined', ['exports'], function(exports){
 
@@ -251,7 +251,7 @@ test('should export undefined', function(assert){
 
 });
 
-test('should export null', function(assert){
+test('null', function(assert){
 
     AMD.define('different/export/null', ['exports'], function(exports){
 
@@ -268,7 +268,7 @@ test('should export null', function(assert){
 
 });
 
-test('should export function which returns', function(assert){
+test('function which returns', function(assert){
 
     AMD.define('different/export/function', ['exports'], function(exports){
 
@@ -285,7 +285,7 @@ test('should export function which returns', function(assert){
 
 });
 
-test('should export function which does not returns', function(assert){
+test('function which does not returns', function(assert){
 
     AMD.define('different/export/function/noreturns', ['exports'], function(exports){
 
@@ -304,9 +304,9 @@ test('should export function which does not returns', function(assert){
 
 
 
-QUnit.module('updating references', config);
+QUnit.module('Updating references: should not update reference as a ', config);
 
-test('should not update reference as a plain object', function(assert){
+test('plain object', function(assert){
 
     AMD.define('different/export/object/ref', ['exports'], function(exports){
 
@@ -328,7 +328,7 @@ test('should not update reference as a plain object', function(assert){
 
 });
 
-test('should not update reference as a deep plain object', function(assert){
+test('deep plain object', function(assert){
 
     AMD.define('different/export/object/ref/deep', ['exports'], function(exports){
 
@@ -350,7 +350,7 @@ test('should not update reference as a deep plain object', function(assert){
 
 });
 
-test('should not update reference as a string', function(assert){
+test('string', function(assert){
 
     AMD.define('different/export/object/ref/string', ['exports'], function(exports){
 
@@ -372,7 +372,7 @@ test('should not update reference as a string', function(assert){
 
 });
 
-test('should not update reference as a number', function(assert){
+test('number', function(assert){
 
     AMD.define('different/export/object/ref/number', ['exports'], function(exports){
 
@@ -394,7 +394,7 @@ test('should not update reference as a number', function(assert){
 
 });
 
-test('should not update reference as a array', function(assert){
+test('array', function(assert){
 
     AMD.define('different/export/object/ref/array', ['exports'], function(exports){
 
@@ -416,7 +416,7 @@ test('should not update reference as a array', function(assert){
 
 });
 
-test('should not update reference as a function', function(assert){
+test('function', function(assert){
 
     AMD.define('different/export/object/ref/function', ['exports'], function(exports){
 
@@ -438,7 +438,7 @@ test('should not update reference as a function', function(assert){
 
 });
 
-test('should not update reference as a date', function(assert){
+test('date', function(assert){
 
     AMD.define('different/export/object/ref/date', ['exports'], function(exports){
 
@@ -460,7 +460,7 @@ test('should not update reference as a date', function(assert){
 
 });
 
-test('should not update reference as a regexp', function(assert){
+test('regexp', function(assert){
 
     AMD.define('different/export/object/ref/regexp', ['exports'], function(exports){
 
@@ -482,7 +482,7 @@ test('should not update reference as a regexp', function(assert){
 
 });
 
-test('should not update reference as a undefined', function(assert){
+test('undefined', function(assert){
 
     AMD.define('different/export/object/ref/undefined', ['exports'], function(exports){
 
@@ -504,7 +504,7 @@ test('should not update reference as a undefined', function(assert){
 
 });
 
-test('should not update reference as a null', function(assert){
+test('null', function(assert){
 
     AMD.define('different/export/object/ref/null', ['exports'], function(exports){
 
@@ -615,9 +615,9 @@ test('should get 5 dependencies', function(assert){
 });
 
 
-QUnit.module('Dependencies: should get the correct dependencies', config);
+QUnit.module('Dependencies: should get the correct dependencies as', config);
 
-test('as strings', function(assert){
+test('strings', function(assert){
 
     AMD.define('app', ['exports', 'some/dep/1', 'some/dep/2'], function(exports, dep1, dep2){
 
@@ -653,7 +653,7 @@ test('as strings', function(assert){
 
 });
 
-test('as arrays', function(assert){
+test('arrays', function(assert){
 
     AMD.define('app', ['exports', 'some/dep/3', 'some/dep/4'], function(exports, dep1, dep2){
 
@@ -693,7 +693,7 @@ test('as arrays', function(assert){
 
 });
 
-test('as numbers', function(assert){
+test('numbers', function(assert){
 
     AMD.define('app', ['exports', 'some/dep/as/number/5', 'some/dep/as/number/6'], function(exports, dep1, dep2){
 
@@ -733,7 +733,7 @@ test('as numbers', function(assert){
 
 });
 
-test('as deep plain objects', function(assert){
+test('deep plain objects', function(assert){
 
     AMD.define('app', ['exports', 'some/dep/as/deep/plain/objects/5', 'some/dep/as/deep/plain/objects/6'], function(exports, dep1, dep2){
 
@@ -773,7 +773,7 @@ test('as deep plain objects', function(assert){
 
 });
 
-test('as functions', function(assert){
+test('functions', function(assert){
 
     AMD.define('app', ['exports', 'some/dep/as/function/5', 'some/dep/as/function/6'], function(exports, dep1, dep2){
 
@@ -813,7 +813,7 @@ test('as functions', function(assert){
 
 });
 
-test('as dates', function(assert){
+test('dates', function(assert){
 
     AMD.define('app', ['exports', 'some/dep/as/date/5', 'some/dep/as/date/6'], function(exports, dep1, dep2){
 
@@ -853,7 +853,7 @@ test('as dates', function(assert){
 
 });
 
-test('as regexes', function(assert){
+test('regexes', function(assert){
 
     AMD.define('app', ['exports', 'some/dep/as/regex/5', 'some/dep/as/regex/6'], function(exports, dep1, dep2){
 
@@ -893,7 +893,7 @@ test('as regexes', function(assert){
 
 });
 
-test('as undefined', function(assert){
+test('undefined', function(assert){
 
     AMD.define('app', ['exports', 'some/dep/as/undefined/5', 'some/dep/as/undefined/6'], function(exports, dep1, dep2){
 
@@ -933,7 +933,7 @@ test('as undefined', function(assert){
 
 });
 
-test('as null', function(assert){
+test('null', function(assert){
 
     AMD.define('app', ['exports', 'some/dep/as/null/5', 'some/dep/as/null/6'], function(exports, dep1, dep2){
 
@@ -970,5 +970,530 @@ test('as null', function(assert){
     assert.deepEqual(result.first, null, 'get correctly first null dependency');
     assert.deepEqual(result.second, null, 'get correctly second null dependency');
     assert.equal(AMD.getLength(), 3, 'registry length should be 3');
+
+});
+
+QUnit.module('Dependencies: should NOT update dependencies as ', config);
+
+test('strings', function(assert){
+
+    AMD.define('app', ['exports', 'some/dep/1', 'some/dep/2'], function(exports, dep1, dep2){
+
+        var aDep = dep1['default'];
+        var bDep = dep2['default'];
+
+        aDep = 'c';
+        bDep = 'd';
+        var result = aDep + ' ' + bDep;
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('newapp', ['exports', 'some/dep/1', 'some/dep/2'], function(exports, dep1, dep2){
+
+        var aDep = dep1['default'];
+        var bDep = dep2['default'];
+
+        var result = aDep + ' ' + bDep;
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('some/dep/1', ['exports'], function(exports){
+
+        var result = 'a';
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('some/dep/2', ['exports'], function(exports){
+
+        var result = 'b';
+
+        exports["default"] = result;
+
+    });
+
+    var result = AMD.require('app');
+    var newresult = AMD.require('newapp');
+
+    assert.equal(result, 'c d', 'get first value with overwritten dependencies');
+    assert.equal(newresult, 'a b', 'get initial value with dependencies');
+    assert.equal(AMD.getLength(), 4, 'registry length should be 4');
+
+});
+
+test('arrays', function(assert){
+
+    AMD.define('app', ['exports', 'some/dep/1', 'some/dep/2'], function(exports, dep1, dep2){
+
+        var aDep = dep1['default'];
+        var bDep = dep2['default'];
+
+        aDep = 'c';
+        bDep = 'd';
+        var result = {
+            first:aDep,
+            second:bDep
+        };
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('newapp', ['exports', 'some/dep/1', 'some/dep/2'], function(exports, dep1, dep2){
+
+        var aDep = dep1['default'];
+        var bDep = dep2['default'];
+
+        var result = {
+            first:aDep,
+            second:bDep
+        };
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('some/dep/1', ['exports'], function(exports){
+
+        var result = ['a', 2, 'c'];
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('some/dep/2', ['exports'], function(exports){
+
+        var result = ['b', 3, 'd'];
+
+        exports["default"] = result;
+
+    });
+
+    var result = AMD.require('app');
+    var newresult = AMD.require('newapp');
+
+    assert.equal(result.first, 'c', 'get initial value with dependencies');
+    assert.equal(result.second, 'd', 'get initial value with dependencies');
+    assert.deepEqual(newresult.first, ['a', 2, 'c'], 'get correctly first array dependency');
+    assert.deepEqual(newresult.second, ['b', 3, 'd'], 'get correctly second array dependency');
+    assert.equal(AMD.getLength(), 4, 'registry length should be 4');
+
+});
+
+test('numbers', function(assert){
+
+    AMD.define('app', ['exports', 'some/dep/1', 'some/dep/2'], function(exports, dep1, dep2){
+
+        var aDep = dep1['default'];
+        var bDep = dep2['default'];
+
+        aDep = 'c';
+        bDep = 'd';
+        var result = {
+            first:aDep,
+            second:bDep
+        };
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('newapp', ['exports', 'some/dep/1', 'some/dep/2'], function(exports, dep1, dep2){
+
+        var aDep = dep1['default'];
+        var bDep = dep2['default'];
+
+        var result = {
+            first:aDep,
+            second:bDep
+        };
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('some/dep/1', ['exports'], function(exports){
+
+        var result = 6;
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('some/dep/2', ['exports'], function(exports){
+
+        var result = 7;
+
+        exports["default"] = result;
+
+    });
+
+    var result = AMD.require('app');
+    var newresult = AMD.require('newapp');
+
+    assert.equal(result.first, 'c', 'get initial value with dependencies');
+    assert.equal(result.second, 'd', 'get initial value with dependencies');
+    assert.deepEqual(newresult.first, 6, 'get correctly first numbers dependency');
+    assert.deepEqual(newresult.second, 7, 'get correctly second numbers dependency');
+    assert.equal(AMD.getLength(), 4, 'registry length should be 4');
+
+});
+
+test('deep plain objects', function(assert){
+
+    AMD.define('app', ['exports', 'some/dep/1', 'some/dep/2'], function(exports, dep1, dep2){
+
+        var aDep = dep1['default'];
+        var bDep = dep2['default'];
+
+        aDep = 'c';
+        bDep = 'd';
+        var result = {
+            first:aDep,
+            second:bDep
+        };
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('newapp', ['exports', 'some/dep/1', 'some/dep/2'], function(exports, dep1, dep2){
+
+        var aDep = dep1['default'];
+        var bDep = dep2['default'];
+
+        var result = {
+            first:aDep,
+            second:bDep
+        };
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('some/dep/1', ['exports'], function(exports){
+
+        var result = {a:{c:5,d:'6'},b:34};
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('some/dep/2', ['exports'], function(exports){
+
+        var result = {a:{c:6,d:'7'},b:35};
+
+        exports["default"] = result;
+
+    });
+
+    var result = AMD.require('app');
+    var newresult = AMD.require('newapp');
+
+    assert.equal(result.first, 'c', 'get initial value with dependencies');
+    assert.equal(result.second, 'd', 'get initial value with dependencies');
+    assert.deepEqual(newresult.first, {a:{c:5,d:'6'},b:34}, 'get correctly first deep plain objects dependency');
+    assert.deepEqual(newresult.second, {a:{c:6,d:'7'},b:35}, 'get correctly second deep plain objects dependency');
+    assert.equal(AMD.getLength(), 4, 'registry length should be 4');
+
+});
+
+test('functions', function(assert){
+
+    AMD.define('app', ['exports', 'some/dep/1', 'some/dep/2'], function(exports, dep1, dep2){
+
+        var aDep = dep1['default'];
+        var bDep = dep2['default'];
+
+        aDep = 'c';
+        bDep = 'd';
+        var result = {
+            first:aDep,
+            second:bDep
+        };
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('newapp', ['exports', 'some/dep/1', 'some/dep/2'], function(exports, dep1, dep2){
+
+        var aDep = dep1['default'];
+        var bDep = dep2['default'];
+
+        var result = {
+            first:aDep,
+            second:bDep
+        };
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('some/dep/1', ['exports'], function(exports){
+
+        var result = function(msg){return msg+' aaa';};
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('some/dep/2', ['exports'], function(exports){
+
+        var result = function(msg){return msg+' bbb';};
+
+        exports["default"] = result;
+
+    });
+
+    var result = AMD.require('app');
+    var newresult = AMD.require('newapp');
+
+    assert.equal(result.first, 'c', 'get initial value with dependencies');
+    assert.equal(result.second, 'd', 'get initial value with dependencies');
+    assert.deepEqual(newresult.first('hello'), 'hello aaa', 'get correctly first numbers dependency');
+    assert.deepEqual(newresult.second('halo'), 'halo bbb', 'get correctly second numbers dependency');
+    assert.equal(AMD.getLength(), 4, 'registry length should be 4');
+
+});
+
+test('dates', function(assert){
+
+    AMD.define('app', ['exports', 'some/dep/1', 'some/dep/2'], function(exports, dep1, dep2){
+
+        var aDep = dep1['default'];
+        var bDep = dep2['default'];
+
+        aDep = 'c';
+        bDep = 'd';
+        var result = {
+            first:aDep,
+            second:bDep
+        };
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('newapp', ['exports', 'some/dep/1', 'some/dep/2'], function(exports, dep1, dep2){
+
+        var aDep = dep1['default'];
+        var bDep = dep2['default'];
+
+        var result = {
+            first:aDep,
+            second:bDep
+        };
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('some/dep/1', ['exports'], function(exports){
+
+        var result = new Date();
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('some/dep/2', ['exports'], function(exports){
+
+        var result = new Date();
+
+        exports["default"] = result;
+
+    });
+
+    var result = AMD.require('app');
+    var newresult = AMD.require('newapp');
+
+    assert.equal(result.first, 'c', 'get initial value with dependencies');
+    assert.equal(result.second, 'd', 'get initial value with dependencies');
+    assert.ok(newresult.first instanceof Date, 'get correctly first dates dependency');
+    assert.ok(newresult.second instanceof Date, 'get correctly second dates dependency');
+    assert.equal(AMD.getLength(), 4, 'registry length should be 4');
+
+});
+
+test('regexes', function(assert){
+
+    AMD.define('app', ['exports', 'some/dep/1', 'some/dep/2'], function(exports, dep1, dep2){
+
+        var aDep = dep1['default'];
+        var bDep = dep2['default'];
+
+        aDep = 'c';
+        bDep = 'd';
+        var result = {
+            first:aDep,
+            second:bDep
+        };
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('newapp', ['exports', 'some/dep/1', 'some/dep/2'], function(exports, dep1, dep2){
+
+        var aDep = dep1['default'];
+        var bDep = dep2['default'];
+
+        var result = {
+            first:aDep,
+            second:bDep
+        };
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('some/dep/1', ['exports'], function(exports){
+
+        var result = new RegExp(/[abc]/g);
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('some/dep/2', ['exports'], function(exports){
+
+        var result =new RegExp(/[hgf]/g);
+
+        exports["default"] = result;
+
+    });
+
+    var result = AMD.require('app');
+    var newresult = AMD.require('newapp');
+
+    assert.equal(result.first, 'c', 'get initial value with dependencies');
+    assert.equal(result.second, 'd', 'get initial value with dependencies');
+    assert.ok(newresult.first instanceof RegExp, 'get correctly first numbers dependency');
+    assert.ok(newresult.second instanceof RegExp, 'get correctly second numbers dependency');
+    assert.equal(AMD.getLength(), 4, 'registry length should be 4');
+
+});
+
+test('undefined', function(assert){
+
+    AMD.define('app', ['exports', 'some/dep/1', 'some/dep/2'], function(exports, dep1, dep2){
+
+        var aDep = dep1['default'];
+        var bDep = dep2['default'];
+
+        aDep = 'c';
+        bDep = 'd';
+        var result = {
+            first:aDep,
+            second:bDep
+        };
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('newapp', ['exports', 'some/dep/1', 'some/dep/2'], function(exports, dep1, dep2){
+
+        var aDep = dep1['default'];
+        var bDep = dep2['default'];
+
+        var result = {
+            first:aDep,
+            second:bDep
+        };
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('some/dep/1', ['exports'], function(exports){
+
+        var result = undefined;
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('some/dep/2', ['exports'], function(exports){
+
+        var result = undefined;
+
+        exports["default"] = result;
+
+    });
+
+    var result = AMD.require('app');
+    var newresult = AMD.require('newapp');
+
+    assert.equal(result.first, 'c', 'get initial value with dependencies');
+    assert.equal(result.second, 'd', 'get initial value with dependencies');
+    assert.deepEqual(newresult.first, undefined, 'get correctly first undefined dependency');
+    assert.deepEqual(newresult.second, undefined, 'get correctly second undefined dependency');
+    assert.equal(AMD.getLength(), 4, 'registry length should be 4');
+
+});
+
+test('null', function(assert){
+
+    AMD.define('app', ['exports', 'some/dep/1', 'some/dep/2'], function(exports, dep1, dep2){
+
+        var aDep = dep1['default'];
+        var bDep = dep2['default'];
+
+        aDep = 'c';
+        bDep = 'd';
+        var result = {
+            first:aDep,
+            second:bDep
+        };
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('newapp', ['exports', 'some/dep/1', 'some/dep/2'], function(exports, dep1, dep2){
+
+        var aDep = dep1['default'];
+        var bDep = dep2['default'];
+
+        var result = {
+            first:aDep,
+            second:bDep
+        };
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('some/dep/1', ['exports'], function(exports){
+
+        var result = null;
+
+        exports["default"] = result;
+
+    });
+
+    AMD.define('some/dep/2', ['exports'], function(exports){
+
+        var result = null;
+
+        exports["default"] = result;
+
+    });
+
+    var result = AMD.require('app');
+    var newresult = AMD.require('newapp');
+
+    assert.equal(result.first, 'c', 'get initial value with dependencies');
+    assert.equal(result.second, 'd', 'get initial value with dependencies');
+    assert.deepEqual(newresult.first, null, 'get correctly first null dependency');
+    assert.deepEqual(newresult.second, null, 'get correctly second null dependency');
+    assert.equal(AMD.getLength(), 4, 'registry length should be 4');
 
 });
