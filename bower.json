@@ -18,6 +18,10 @@
     "**/.*",
     "node_modules",
     "bower_components",
+    "testem.json",
+    "*.idea",
+    "Gruntfile.js",
+    "lib",
     "test",
     "tests"
   ]
