@@ -1,5 +1,4 @@
 // WIP:
-// - instance of an custom object
 // - closures
 // - dots and slashes in name - test relative paths -> SHOULD NOT BE ACCEPTED - or make a config object where you can choose if you want relative paths or not
 
@@ -544,10 +543,6 @@ test('null', function(assert){
 
 
 
-QUnit.module('instances of objects', config);
-
-
-
 QUnit.module('Dependencies', config);
 
 test('should work without dependencies', function(assert){
@@ -629,6 +624,7 @@ test('should get 5 dependencies', function(assert){
     assert.equal(AMD.getLength(), 6, 'registry length should be 6');
 
 });
+
 
 
 QUnit.module('Dependencies: should get the correct dependencies as', config);
@@ -988,6 +984,8 @@ test('null', function(assert){
     assert.equal(AMD.getLength(), 3, 'registry length should be 3');
 
 });
+
+
 
 QUnit.module('Dependencies: should NOT update dependencies as ', config);
 
@@ -1511,5 +1509,121 @@ test('null', function(assert){
     assert.deepEqual(newresult.first, null, 'get correctly first null dependency');
     assert.deepEqual(newresult.second, null, 'get correctly second null dependency');
     assert.equal(AMD.getLength(), 4, 'registry length should be 4');
+
+});
+
+
+
+QUnit.module('instances of objects', config);
+
+test('should export instance of an new CustomFunction', function(assert){
+
+    AMD.define('export/custom/instance', ['exports'], function(exports){
+
+        var customAction = function(number){
+            this.number = number;
+        };
+
+        customAction.prototype.getNumber = function(){
+            return this.number;
+        };
+
+        customAction.prototype.increment = function(){
+            this.number++;
+        };
+
+        var result = new customAction(5);
+
+        exports["default"] = result;
+
+    });
+
+    var result = AMD.require('export/custom/instance');
+
+    assert.deepEqual(result.getNumber(), 5, 'should export instance');
+
+    result.increment();
+
+    assert.deepEqual(result.getNumber(), 6, 'can use methods form the instance object');
+
+    var newresult = AMD.require('export/custom/instance');
+
+    assert.deepEqual(newresult.getNumber(), 5, 'should not overwite instance');
+
+    assert.equal(AMD.getLength(), 1, 'registry length should be 1');
+
+});
+
+test('should export class', function(assert){
+
+    AMD.define('export/custom/class', ['exports'], function(exports){
+
+        var customAction = function(number){
+            this.number = number;
+        };
+
+        customAction.prototype.getNumber = function(){
+            return this.number;
+        };
+
+        customAction.prototype.increment = function(){
+            this.number++;
+        };
+
+        var result = customAction;
+
+        exports["default"] = result;
+
+    });
+
+    var customClass = AMD.require('export/custom/class');
+
+    var action = new customClass(3);
+
+    assert.deepEqual(action.getNumber(), 3, 'can use methods from the class');
+
+    action.increment();
+
+    assert.deepEqual(action.getNumber(), 4, 'should not overwrite the class');
+    assert.equal(AMD.getLength(), 1, 'registry length should be 1');
+
+});
+
+test('should export method', function(assert){
+
+    AMD.define('export/custom/method', ['exports'], function(exports){
+
+        var customAction = function(number){
+            this.number = number;
+        };
+
+        customAction.prototype.getNumber = function(){
+            return this.number;
+        };
+
+        customAction.prototype.increment = function(){
+            this.number++;
+        };
+
+        var result = new customAction(9);
+
+        exports["default"] = result.increment;
+        exports["klass"] = result;
+
+    });
+
+    var incrementMethod = AMD.require('export/custom/method');
+    var klass = AMD.require('export/custom/method', 'klass');
+
+    assert.deepEqual(klass.getNumber(), 9, 'class is initialized');
+
+    incrementMethod();
+
+    assert.deepEqual(klass.getNumber(), 9, 'should not keep reference of the instance');
+
+    klass.increment();
+
+    assert.deepEqual(klass.getNumber(), 10, 'should execute method on class');
+    assert.equal(AMD.getLength(), 1, 'registry length should be 1');
 
 });
