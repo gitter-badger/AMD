@@ -4,7 +4,7 @@
 
 var config = {
   afterEach: function() {
-        AMD.destroy();
+        AMD.reset();
   }
 };
 var test = QUnit.test;

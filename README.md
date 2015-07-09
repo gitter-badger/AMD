@@ -1,6 +1,14 @@
 # AMD
-Personalized version of an AMD implementation
+Custom AMD implementation
 
 ### Install
 
     npm install
+
+### Tests
+
+    testem
+
+### Build
+
+    grunt build:prod
