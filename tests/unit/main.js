@@ -2,7 +2,7 @@
 // - instance of an custom object
 // - closures
 // - dots and slashes in name - test relative paths -> SHOULD NOT BE ACCEPTED - or make a config object where you can choose if you want relative paths or not
-// - Could not find module
+
 
 var config = {
   afterEach: function() {
@@ -101,6 +101,22 @@ test('should not add duplicated module names', function(assert){
         },
         /duplicatedModule/,
         'should throw on duplicated Module name'
+    );
+
+});
+
+
+
+QUnit.module('Module presence', config);
+
+test('should throw error if module is not present', function(assert){
+
+    assert.throws(
+        function(){
+            var result = AMD.require('some/missing/module/which/was/not/defined');
+        },
+        /Could not find module/,
+        'module should be missing'
     );
 
 });
