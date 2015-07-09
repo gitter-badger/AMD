@@ -2,7 +2,9 @@ var matchdep = require('matchdep');
 
 module.exports = function(grunt) {
 
-  // Project configuration.
+  // load all grunt plugins from node_modules folder
+  matchdep.filterAll('grunt-*').forEach(grunt.loadNpmTasks);
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat:{
@@ -44,13 +46,15 @@ module.exports = function(grunt) {
 
   });
 
-  // load all grunt plugins from node_modules folder
-  matchdep.filterAll('grunt-*').forEach(grunt.loadNpmTasks);
-
-  // Default task(s).
   grunt.registerTask('build:tests:qunit', ['concat:qunit']);
   grunt.registerTask('build:prod', ['uglify']);
-  grunt.registerTask('deploy', ['bump-only:patch', 'uglify', 'bump-commit']);
+
+  grunt.registerTask('deploy:commit', ['uglify', 'bump-commit']);
+  grunt.registerTask('deploy:patch', ['bump-only:patch', 'deploy:commit']);
+  grunt.registerTask('deploy:minor', ['bump-only:minor', 'deploy:commit']);
+  grunt.registerTask('deploy:major', ['bump-only:major', 'deploy:commit']);
+  grunt.registerTask('deploy',       ['deploy:patch']);
+
   grunt.registerTask('default', ['build:prod']);
 
 };
