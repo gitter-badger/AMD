@@ -7,9 +7,8 @@
         "tests/unit/main.js"
     ],
     "serve_files": [
-        "tests/build/mocha/browser/expect.js",
         "lib/main.js",
-        "ephemeral/tests/compiled_runners/**/*.js"
+        "tests/unit/main.js"
     ],
     "launch_in_ci": [
         "PhantomJS"

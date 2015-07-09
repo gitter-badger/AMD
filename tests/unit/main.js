@@ -328,52 +328,6 @@ test('should not update reference as a plain object', function(assert){
 
 });
 
-/* jshint ignore:start */
-
-0. loop through all the files with grunt.concat.option.process function
-1. replace newlines with a unique value and store that value (  something like /*NEWLINE*/ )
-2. search by this {{#runner}}(.*){{\/runner}}/g
-3. replace matches with the content resulted from steps 3.0 to 3.4
-3.0 split by {{tests}}
-3.1 json parse the data from tests section
-3.2 loop through the runner template with all the value from tests section
-3.3 search for {{variables}} with this /{{([^}]*)}}/g in runner template
-3.4 replace the variables with the values from tests section
-4. replace that unique value with newlines
-
-{{#runner}}
-
-    test('should not update reference as a {{type}}', function(assert){
-
-        AMD.define('different/export/object/{{type}}', ['exports'], function(exports){
-
-            var result = {{value}};
-
-            exports["default"] = result;
-
-        });
-
-        var initialObj = AMD.require('different/export/object/{{type}}');
-
-        {{modifyAction}}
-
-        var finalObj = AMD.require('different/export/object/{{type}}');
-
-        assert.deepEqual(initialObj, {{expectedModifiedValue}}, 'update obj should be locally');
-        assert.deepEqual(finalObj, {{expectedReferenceValue}}, 'should keep reference {{type}}');
-        assert.equal(AMD.getLength(), 1, 'registry length should be 1');
-
-    });
-
-{{tests}}
-
-    {type:'string', value:'a', modifyAction:'{{initialObj.a = "deep/diff"}}', expectedModifiedValue: 'deep/diff', expectedReferenceValue: 'a'},
-    {type:'string', value:'a', modifyAction:'{{initialObj.a = "deep/diff"}}', expectedModifiedValue: 'deep/diff', expectedReferenceValue: 'a'},
-    {type:'string', value:'a', modifyAction:'{{initialObj.a = "deep/diff"}}', expectedModifiedValue: 'deep/diff', expectedReferenceValue: 'a'}
-
-{{/runner}}
-/* jshint ignore:end */
-
 test('should not update reference as a deep plain object', function(assert){
 
     AMD.define('different/export/object/ref/deep', ['exports'], function(exports){
