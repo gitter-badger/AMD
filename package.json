@@ -1,6 +1,6 @@
 {
   "name": "nucleo-AMD",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Custom AMD implementation",
   "main": "nucleo-amd.min.js",
   "repository": {
