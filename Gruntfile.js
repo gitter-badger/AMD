@@ -25,9 +25,14 @@ module.exports = function(grunt) {
             }
         }
     },
+    shell: {
+      pre_commit_tests: {
+        command: 'testem ci'
+      }
+    },
     bump: {
       options: {
-        files: ['bower.json'],
+        files: ['package.json', 'bower.json'],
         updateConfigs: ['pkg'],
         commit: true,
         commitMessage: 'Release v%VERSION%',
@@ -45,22 +50,18 @@ module.exports = function(grunt) {
     }
 
   });
-//HACK to trick shitty npm publish
-// rename .git directory so that npm version will not create tags
-// after that rename it back
-// UPDATE: node module needs to use module.exports...which i am not using it
+
 // TODOS:
-// - find a way to deploy to both places in the same time ( bower, node )
-// - include in deployment process a task to run tests and to abort deployment if tests are failing
 // - include a task to automaticaly create changelogs based on commits - https://github.com/lalitkapoor/github-changes
+
   grunt.registerTask('build:tests:qunit', ['concat:qunit']);
   grunt.registerTask('build:prod', ['uglify']);
 
   grunt.registerTask('deploy:commit', ['uglify', 'bump-commit']);
-  grunt.registerTask('deploy:tests', ['bump-only:patch', 'uglify']);
-  grunt.registerTask('deploy:patch', ['bump-only:patch', 'deploy:commit']);
-  grunt.registerTask('deploy:minor', ['bump-only:minor', 'deploy:commit']);
-  grunt.registerTask('deploy:major', ['bump-only:major', 'deploy:commit']);
+  grunt.registerTask('deploy:tests', ['shell:pre_commit_tests', 'bump-only:patch', 'uglify']);
+  grunt.registerTask('deploy:patch', ['shell:pre_commit_tests', 'bump-only:patch', 'deploy:commit']);
+  grunt.registerTask('deploy:minor', ['shell:pre_commit_tests', 'bump-only:minor', 'deploy:commit']);
+  grunt.registerTask('deploy:major', ['shell:pre_commit_tests', 'bump-only:major', 'deploy:commit']);
   grunt.registerTask('deploy',       ['deploy:patch']);
 
   grunt.registerTask('default', ['build:prod']);
