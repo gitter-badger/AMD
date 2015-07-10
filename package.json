@@ -19,7 +19,6 @@
     "grunt-contrib-concat": "0.5.1",
     "grunt-contrib-uglify": "0.8.0",
     "grunt-shell": "1.1.2",
-    "grunt-update-json": "0.2.1",
     "matchdep": "0.3.0"
   }
 }
