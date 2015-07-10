@@ -4,11 +4,12 @@
     "livereload": true,
     "src_files": [
         "lib/main.js",
-        "tests/unit/main.js"
+        "tests/unit/**/*.js"
     ],
     "serve_files": [
         "lib/main.js",
-        "tests/unit/main.js"
+        "tests/unit/main.js",
+        "tests/unit/**/*.spec.js"
     ],
     "launch_in_ci": [
         "PhantomJS"
