@@ -47,7 +47,12 @@ module.exports = function(grunt) {
   });
 //HACK to trick shitty npm publish
 // rename .git directory so that npm version will not create tags
-// after tha rename it back
+// after that rename it back
+// UPDATE: node module needs to use module.exports...which i am not using it
+// TODOS:
+// - find a way to deploy to both places in the same time ( bower, node )
+// - include in deployment process a task to run tests and to abort deployment if tests are failing
+// - include a task to automaticaly create changelogs based on commits - https://github.com/lalitkapoor/github-changes
   grunt.registerTask('build:tests:qunit', ['concat:qunit']);
   grunt.registerTask('build:prod', ['uglify']);
 
