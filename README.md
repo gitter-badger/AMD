@@ -3,7 +3,7 @@ Custom AMD implementation
 
 ### Usage
 
-    // to do
+    // make documentation about:
     - define
     - require
     - accept relative paths
@@ -29,6 +29,10 @@ Custom AMD implementation
     grunt deploy:minor
     grunt deploy:major
 
+### Planned features
+
+    - require folder path should get file main or index. ex: require('pkg/utils/') should get 'pkg/utils/main'
+    - default prefix: require('utils/isString') will get 'pkg/utils/isString'
 
 ## Authors ##
 
