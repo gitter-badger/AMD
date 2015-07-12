@@ -1,6 +1,13 @@
 # AMD
 Custom AMD implementation
 
+### Usage
+
+    // to do
+    - define
+    - require
+    - accept relative paths
+
 ### Install
 
     npm install
