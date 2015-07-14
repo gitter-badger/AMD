@@ -11,4 +11,4 @@ install:
   - "npm install -g phantomjs"
   - "bower install"
 script:
-  - "testem"
+  - "testem ci"
