@@ -1,6 +1,8 @@
 # AMD
 Custom AMD implementation
 
+[![Bower version](https://badge.fury.io/bo/nucleo-amd.svg)](http://badge.fury.io/bo/nucleo-amd)
+
 ### Usage
 
     // make documentation about:
