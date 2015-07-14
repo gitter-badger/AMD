@@ -1,6 +1,7 @@
 # AMD
 Custom AMD implementation
 
+[![Build Status](https://travis-ci.org/dobre-robert-marius/AMD.svg?branch=master)](https://travis-ci.org/dobre-robert-marius/AMD)
 [![Bower version](https://badge.fury.io/bo/nucleo-amd.svg)](http://badge.fury.io/bo/nucleo-amd)
 
 ### Usage
